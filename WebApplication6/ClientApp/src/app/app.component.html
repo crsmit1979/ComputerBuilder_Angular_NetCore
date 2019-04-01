@@ -1,0 +1,93 @@
+<style>
+  label {
+    width: 200px;
+  }
+</style>
+<body>
+  <app-nav-menu></app-nav-menu>
+  <div class="container">
+    <div *ngIf="selectedRecord">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Id</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.id" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Cpu</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.cpu" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Memory</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.memory" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">HDD Size</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.hddSize" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Power Supply</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.powerSupply" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Weight</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.weight" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Weight Unit</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.weightUnit" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Graphics Card</label>
+        <div class="col-sm-10">
+          <input type="text" [(ngModel)]="selectedRecord.graphicsCard" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <input type="submit" value="Save" (click)="onSubmit()" class="btn btn-primary" />
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>CPU</th>
+          <th>Power Supply</th>
+          <th>Memory</th>
+          <th>HDD Size</th>
+          <th>Grapbics Card</th>
+          <th>Weight</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let computer of computers">
+          <td>{{computer.id}}</td>
+          <td>{{computer.cpu}}</td>
+          <td>{{computer.powerSupply}}</td>
+          <td>{{computer.memory}}</td>
+          <td>{{computer.hddSize}}</td>
+          <td>{{computer.graphicsCard}}</td>
+          <td>{{computer.weight}}&nbsp;{{computer.weightUnit}}</td>
+          <td>
+            <a (click)="editRecord(computer)">Edit</a> |
+            <a (click)="deleteRecord(computer)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+      <router-outlet></router-outlet>
+    </div>
+</body>
