@@ -1,0 +1,60 @@
+<div *ngIf="computer">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label ">Id</label>
+    <div class="col-sm-10">
+      <input type="text" readonly [(ngModel)]="computer.id" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label ">CPU</label>
+    <div class="col-sm-10">
+      <select [(ngModel)]="computer.cpuId">
+        <option *ngFor="let item of cpus" [value]="item.id">{{item.description}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label ">Memory</label>
+    <div class="col-sm-10">
+      <select [(ngModel)]="computer.memoryId">
+        <option *ngFor="let item of memories" [value]="item.id">{{item.description}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label ">HDD Size</label>
+    <div class="col-sm-10">
+      <select [(ngModel)]="computer.hddSizeId">
+        <option *ngFor="let item of hddsizes" [value]="item.id">{{item.description}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label ">Power Supply</label>
+    <div class="col-sm-10">
+      <select [(ngModel)]="computer.powerSupplyId">
+        <option *ngFor="let item of powersupplies" [value]="item.id">{{item.description}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label ">Weight</label>
+    <div class="col-sm-10">
+      <input type="text" [(ngModel)]="computer.weight" />
+      <select [(ngModel)]="computer.weightUnitId">
+        <option *ngFor="let item of weightunits" [value]="item.id">{{item.description}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label ">Graphics Card</label>
+    <div class="col-sm-10">
+      <select [(ngModel)]="computer.graphicsCardId">
+        <option *ngFor="let item of graphicscards" [value]="item.id">{{item.description}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <input type="submit" value="Save" (click)="doSave()" class="btn btn-primary" />
+  </div>
+</div>

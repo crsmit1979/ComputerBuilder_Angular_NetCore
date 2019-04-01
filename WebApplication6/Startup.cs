@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.EntityFrameworkCore;
 using WebApplication6.Models;
+using WebApplication6.DataLayer;
 
 namespace WebApplication6
 {
@@ -33,6 +34,7 @@ namespace WebApplication6
 
             services.AddDbContext<WebApplication6Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WebApplication6Context")));
+            services.AddScoped<IDataService, DataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

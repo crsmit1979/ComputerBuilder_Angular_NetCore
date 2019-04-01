@@ -20,6 +20,7 @@ namespace WebApplication6.Models
         public DbSet<WebApplication6.Model.HDDSize> HDDSize { get; set; }
         public DbSet<WebApplication6.Model.PowerSupply> PowerSupply { get; set; }
         public DbSet<WebApplication6.Model.GraphicsCard> GraphicsCard { get; set; }
+        public DbSet<WebApplication6.Model.WeightUnit> WeightUnit { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

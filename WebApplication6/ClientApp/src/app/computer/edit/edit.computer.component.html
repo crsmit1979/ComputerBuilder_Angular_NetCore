@@ -1,0 +1,3 @@
+<h1>Add New Computer</h1>
+<span *ngIf="loading">Loading....</span>
+<computer-edit-form [computer]="computer" (onSave)="onUpdateRecord($event)"></computer-edit-form>

@@ -89,12 +89,18 @@ namespace WebApplication6.Model
     public class ComputerSpec
     {
         public int Id { get; set; }
+        public int MemoryId { get; set; }
         public string Memory { get; set; }
+        public int CPUId { get; set; }
         public string CPU { get; set; }
+        public int HddSizeId { get; set; }
         public string HDDSize { get; set; }
         public decimal Weight { get; set; }
+        public int WeightUnitId { get; set; }
         public string WeightUnit { get; set; }
+        public int PowerSupplyId { get; set; }
         public string PowerSupply { get; set; }
+        public int GraphicsCardId { get; set; }
         public string GraphicsCard { get; set; }
     }
 }

@@ -9,27 +9,10 @@ import { Computer } from './models/computer';
 })
 export class AppComponent {
   title = 'app';
-  computers: Computer[] = [];
-  selectedRecord: Computer;
 
   constructor(private dataService: DataService) {
-    dataService.getComputerSpecs().subscribe( (dt) => {
-      this.computers = dt;
-
-    })
   }
-  onSubmit() {
+  onSaveRecord() {
     alert(1);
-  }
-  editRecord(record) {
-    this.selectedRecord = Object.assign({}, record);
-  }
-  deleteRecord(record) {
-    if (confirm("Are you sure you want to delete the record")) {
-
-    }
-  }
-  selectRecord(record: Computer) {
-    this.selectedRecord = record;
   }
 }

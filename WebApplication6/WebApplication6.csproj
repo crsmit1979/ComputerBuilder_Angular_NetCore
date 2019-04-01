@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Unity" Version="5.10.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,20 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\components\computer_edit\computer.edit.component.ts" />
+    <None Remove="ClientApp\src\app\components\computer_list\computer.list.component.ts" />
+    <None Remove="ClientApp\src\app\components\dropdown\app.dropdown.ts" />
+    <None Remove="ClientApp\src\app\interfaces\IDropdown.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\components\computer_edit\computer.edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\computer_list\computer.list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\dropdown\app.dropdown.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\interfaces\IDropdown.ts" />
   </ItemGroup>
 
   <ItemGroup>
