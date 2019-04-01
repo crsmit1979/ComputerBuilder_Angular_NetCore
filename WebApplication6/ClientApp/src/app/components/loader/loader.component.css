@@ -1,0 +1,14 @@
+.loader {
+  font-weight:bold;
+  text-align:center;
+  vertical-align:middle;
+  border:1px solid black;
+  background-color:white;
+  position:absolute;
+  left:45%;
+  top:45%;
+  padding:20px;
+}
+img {
+  height: 100px;
+}

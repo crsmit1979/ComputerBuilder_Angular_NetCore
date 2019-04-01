@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Computer } from '../../models/computer';
+import { DataService } from '../../services/data.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'add-computer',
@@ -7,11 +9,13 @@ import { Computer } from '../../models/computer';
 })
 export class AddComputerComponent {
   computer: Computer;
-  constructor() {
+  constructor(private dataService: DataService, private router: Router ) {
     this.computer = new Computer();
   }
 
   onAddRecord() {
-    alert(JSON.stringify(this.computer));
+    this.dataService.insertComputer(this.computer).subscribe((response) => {
+      this.router.navigateByUrl("/");
+    });
   }
 }

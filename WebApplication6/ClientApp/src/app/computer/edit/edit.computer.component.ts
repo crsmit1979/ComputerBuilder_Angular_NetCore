@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Computer } from '../../models/computer';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'edit-computer',
@@ -12,7 +13,7 @@ export class EditComputerComponent {
   id: number;
   loading: boolean = false;
   computer: Computer;
-  constructor(private route: ActivatedRoute, private dataService:DataService) {
+  constructor(private route: ActivatedRoute, private dataService:DataService, private router: Router) {
     this.computer = new Computer();
 
     this.loading = true;
@@ -27,6 +28,8 @@ export class EditComputerComponent {
   }
 
   onUpdateRecord() {
-    alert(JSON.stringify(this.computer));
+    this.dataService.updateComputer(this.computer).subscribe((response) => {
+      this.router.navigateByUrl("/");
+    })
   }
 }

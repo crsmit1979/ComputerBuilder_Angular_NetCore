@@ -17,6 +17,9 @@ namespace WebApplication6.DataLayer
         IEnumerable<WeightUnit> GetAllWeightUnit();
         IEnumerable<HDDSize> GetAllHDDSize();
         ComputerSpec GetComputerSpec(int id);
+        Computer AddComputer(Computer computer);
+        Computer UpdateComputer(int id, Computer computer);
+        bool DeleteComputer(int id);
     }
 
     public class DataService : IDataService
@@ -73,6 +76,20 @@ namespace WebApplication6.DataLayer
                 })
                 .FirstOrDefault();
         }
+        public bool DeleteComputer(int id) {
+            try
+            {
+                Computer recordToDelete = this._context.Computer.Where(e => e.Id == id).FirstOrDefault();
+                this._context.Computer.Remove(recordToDelete);
+                this._context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public IEnumerable<ComputerSpec> GetAllComputerSpecs()
         {
             return this._context.Computer
@@ -93,6 +110,45 @@ namespace WebApplication6.DataLayer
                     WeightUnitId = e.WeightUnitId,
                     WeightUnit = e.WeightUnit.Description
                 }).ToList();
+
+        }
+
+        public Computer AddComputer(Computer computer)
+        {
+            Computer comp = new Computer()
+            {
+                CpuId = computer.CpuId,
+                HDDSizeId = computer.HDDSizeId,
+                GraphicsCardId = computer.GraphicsCardId,
+                MemoryId = computer.MemoryId,
+                PowerSupplyId = computer.PowerSupplyId,
+                Weight = computer.Weight,
+                WeightUnitId = computer.WeightUnitId
+            };
+            this._context.Computer.Add(comp);
+            this._context.SaveChanges();
+            return comp;
+
+        }
+        public Computer UpdateComputer(int id, Computer computer)
+        {
+            Computer record = this._context.Computer.Where(e => e.Id == id).FirstOrDefault();
+            if (record != null)
+            {
+                record.CpuId = computer.CpuId;
+                record.GraphicsCardId = computer.GraphicsCardId;
+                record.HDDSizeId = computer.HDDSizeId;
+                record.MemoryId = computer.MemoryId;
+                record.PowerSupplyId = computer.PowerSupplyId;
+                record.WeightUnitId = computer.WeightUnitId;
+                record.Weight = computer.Weight;
+            }
+            else
+            {
+                throw new Exception("Record not found");
+            }
+            //this._context.Computer.Update(record);
+            return record;
 
         }
     }

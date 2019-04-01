@@ -7,22 +7,22 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { DropDownComponent } from './components/dropdown/app.dropdown';
 import { ComputerEditComponent } from './components/computer_edit/computer.edit.component';
 import { ComputerListComponent } from './components/computer_list/computer.list.component';
 import { AddComputerComponent } from './computer/add/add.computer.component';
 import { EditComputerComponent } from './computer/edit/edit.computer.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    DropDownComponent,
     ComputerEditComponent,
     ComputerListComponent,
     AddComputerComponent,
-    EditComputerComponent
+    EditComputerComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

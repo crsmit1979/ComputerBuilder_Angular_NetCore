@@ -30,15 +30,13 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\components\computer_edit\computer.edit.component.ts" />
     <None Remove="ClientApp\src\app\components\computer_list\computer.list.component.ts" />
-    <None Remove="ClientApp\src\app\components\dropdown\app.dropdown.ts" />
-    <None Remove="ClientApp\src\app\interfaces\IDropdown.ts" />
+    <None Remove="ClientApp\src\app\components\loader\loader.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\computer_edit\computer.edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\computer_list\computer.list.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\components\dropdown\app.dropdown.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\interfaces\IDropdown.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\loader\loader.component.ts" />
   </ItemGroup>
 
   <ItemGroup>

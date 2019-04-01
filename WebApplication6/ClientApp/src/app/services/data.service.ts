@@ -36,7 +36,18 @@ export class DataService {
     return this.http.get<Cpu[]>(`${this.URL}/api/cpus/all_hddsize`);
   }
 
-  getComputerById(id: Number) {
+  getComputerById(id: number) {
     return this.http.get<Computer>(`${this.URL}/api/cpus/computers/${id}`);
+  }
+
+  insertComputer(record: Computer) {
+    return this.http.post<Computer>(`${this.URL}/api/cpus/computers`, record);
+  }
+  updateComputer(record: Computer) {
+    return this.http.put<Computer>(`${this.URL}/api/cpus/computers/${record.id}`, record);
+  }
+
+  deleteComputer(id: number) {
+    return this.http.delete(`${this.URL}/api/cpus/computers/${id}`);
   }
 }

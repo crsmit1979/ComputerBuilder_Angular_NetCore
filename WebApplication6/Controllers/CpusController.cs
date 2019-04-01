@@ -35,6 +35,46 @@ namespace WebApplication6.Controllers
         {
             return this._dataService.GetComputerSpec(id);
         }
+        [HttpPost]
+        [Route("computers")]
+        public Computer AddComputer([FromBody] ComputerSpec computer)
+        {
+            Computer newComputer = new Computer()
+            {
+                CpuId = computer.CPUId,
+                HDDSizeId = computer.HddSizeId,
+                GraphicsCardId = computer.GraphicsCardId,
+                MemoryId = computer.MemoryId,
+                PowerSupplyId = computer.PowerSupplyId,
+                Weight = computer.Weight,
+                WeightUnitId = computer.WeightUnitId
+            };
+
+            return this._dataService.AddComputer(newComputer);
+        }
+        [HttpPut]
+        [Route("computers/{id}")]
+        public Computer UpdateComputer(int id, [FromBody] ComputerSpec computer)
+        {
+            Computer newComputer = new Computer()
+            {
+                CpuId = computer.CPUId,
+                HDDSizeId = computer.HddSizeId,
+                GraphicsCardId = computer.GraphicsCardId,
+                MemoryId = computer.MemoryId,
+                PowerSupplyId = computer.PowerSupplyId,
+                Weight = computer.Weight,
+                WeightUnitId = computer.WeightUnitId
+            };
+
+            return this._dataService.UpdateComputer(id, newComputer);
+        }
+        [HttpDelete]
+        [Route("computers/{id}")]
+        public bool DeleteComputer(int id)
+        {
+            return this._dataService.DeleteComputer(id);
+        }
 
         [HttpGet]
         [Route("all_cpu")]
