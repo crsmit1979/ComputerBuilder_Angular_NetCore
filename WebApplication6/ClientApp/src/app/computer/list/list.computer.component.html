@@ -1,0 +1,30 @@
+<loader *ngIf="loading"></loader>
+<table class="table table-sm table-striped table-bordered first">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>CPU</th>
+      <th>Power Supply</th>
+      <th>Memory</th>
+      <th>HDD Size</th>
+      <th>Grapbics Card</th>
+      <th>Weight</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let computer of computers">
+      <td>{{computer.id}}</td>
+      <td>{{computer.cpu}}</td>
+      <td>{{computer.powerSupply}}</td>
+      <td>{{computer.memory}}</td>
+      <td>{{computer.hddSize}}</td>
+      <td>{{computer.graphicsCard}}</td>
+      <td>{{computer.weight}}&nbsp;{{computer.weightUnit}}</td>
+      <td>
+        <a href="#" routerLink="/edit/{{computer.id}}"><i class="far fa-edit"></i></a> |
+        <a href="#" (click)="deleteRecord(computer)"><i class="far fa-trash-alt"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

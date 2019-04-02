@@ -1,60 +1,95 @@
-<div *ngIf="computer">
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label ">Id</label>
-    <div class="col-sm-10">
-      <input type="text" [(ngModel)]="computer.id" />
+<form *ngIf="computer">
+  <div class="form-row">
+    <div class="form-group col-sm-12">
+      <label class="col-sm-3 col-form-label ">Id:</label>
+      <input type="text" [(ngModel)]="computer.id" name="id" class="form-control-sm col-sm-3" />
     </div>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label ">CPU</label>
-    <div class="col-sm-10">
-      <select [(ngModel)]="computer.cpuId">
+  <div class="form-row">
+    <div class="form-group col-sm-12">
+      <label class="col-sm-3 col-form-label ">CPU:</label>
+      <select [(ngModel)]="computer.cpuId" class="form-control-sm col-sm-6" name="cpuId">
         <option *ngFor="let item of cpus" [value]="item.id">{{item.description}}</option>
       </select>
     </div>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label ">Memory</label>
-    <div class="col-sm-10">
-      <select [(ngModel)]="computer.memoryId">
+  <div class="form-row">
+    <div class="form-group col-sm-12">
+      <label class="col-sm-3 col-form-label ">Memory:</label>
+      <select [(ngModel)]="computer.memoryId" class="form-control-sm col-sm-6" name="memoryId">
         <option *ngFor="let item of memories" [value]="item.id">{{item.description}}</option>
       </select>
     </div>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label ">HDD Size</label>
-    <div class="col-sm-10">
-      <select [(ngModel)]="computer.hddSizeId">
+  <div class="form-row">
+    <div class="form-group col-sm-12">
+      <label class="col-sm-3 col-form-label ">HDD Size:</label>
+      <select [(ngModel)]="computer.hddSizeId" class="form-control-sm col-sm-6" name="hddSizeId">
         <option *ngFor="let item of hddsizes" [value]="item.id">{{item.description}}</option>
       </select>
     </div>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label ">Power Supply</label>
-    <div class="col-sm-10">
-      <select [(ngModel)]="computer.powerSupplyId">
+  <div class="form-row">
+    <div class="form-group col-sm-12">
+      <label class="col-sm-3 col-form-label ">Power Supply:</label>
+      <select [(ngModel)]="computer.powerSupplyId" class="form-control-sm col-sm-6" name="powerSupplyId" placeoholder="Power Supply">
         <option *ngFor="let item of powersupplies" [value]="item.id">{{item.description}}</option>
       </select>
+
     </div>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label ">Weight</label>
-    <div class="col-sm-10">
-      <input type="text" [(ngModel)]="computer.weight" />
-      <select [(ngModel)]="computer.weightUnitId">
-        <option *ngFor="let item of weightunits" [value]="item.id">{{item.description}}</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label ">Graphics Card</label>
-    <div class="col-sm-10">
-      <select [(ngModel)]="computer.graphicsCardId">
+  <div class="form-row">
+    <div class="form-group col-sm-12">
+      <label class="col-sm-3 col-form-label">Graphics Card:</label>
+      <select [(ngModel)]="computer.graphicsCardId" class="form-control-sm col-sm-6" name="graphicsCardId">
         <option *ngFor="let item of graphicscards" [value]="item.id">{{item.description}}</option>
       </select>
     </div>
   </div>
-  <div class="form-group row">
-    <input type="submit" value="Save" (click)="doSave()" class="btn btn-primary" />
+  <div class="form-row">
+    <div class="form-group col-sm-6">
+      <label class="col-sm-6 col-form-label" for="weight">Weight:</label>
+      <input type="text" [(ngModel)]="computer.weight" class="form-control-sm col-sm-2" name="weight" placeholder="Weight" />
+    </div>
+    <div class="form-group col-sm-6">
+      <label class="col-sm-4 col-form-label" for="weightUnitId">Weight Unit:</label>
+      <select [(ngModel)]="computer.weightUnitId" class="form-control-sm col-sm-2" name="weightUnitId" placeholder="Weight Unit">
+        <option *ngFor="let item of weightunits" [value]="item.id">{{item.description}}</option>
+      </select>
+    </div>
   </div>
-</div>
+  <div class="form-row">
+    <label class="col-sm-4 col-form-label" for="weightUnitId">USB Ports:</label>
+    <br/>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>USB</th>
+          <th>Quantity</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usbItem of usbItems">
+          <td>
+            <select class="form-control-sm col-sm-12" name="usbid" placeholder="USB">
+              <option *ngFor="let item of usbs" value="{{item.id}}">{{item.description}}</option>
+            </select>
+          </td>
+          <td>
+            <input type="text"  class="col-sm-12" value="{{usbItem.quantity}}"/>
+          </td>
+          <td>
+            <a href="#" (click)="removeUSBItem(usbItem)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br/>
+    <button (click)="addUSBItem()" class="btn btn-secondary">Add USB</button>
+  </div>
+    <div class="form-group col-sm-12 right">
+      <button (click)="doSave()" class="btn btn-primary float-right"><i class=" far fa-save"></i>&nbsp;Save</button>
+    </div>
+</form>

@@ -1,4 +1,16 @@
 ﻿--select * from [table]
+
+if (EXISTS(select * from sys.tables where name='tblUSB'))
+BEGIN
+	drop table tblUSB;
+END
+create table tblUSB (id int identity(1,1), description nvarchar(255))
+insert into tblUSB(id, description) values ('USB 3.0');
+insert into tblUSB(id, description) values ('USB 2.0');
+insert into tblUSB(id, description) values ('USB C');
+
+
+
 if (EXISTS(select * from sys.tables where name='tblPowerSupply'))
 BEGIN
 	drop table tblPowerSupply;
@@ -63,6 +75,7 @@ PowerSupplyId int
 )
 
 delete from tblComputer;
+DBCC CHECKIDENT ('tblComputer', RESEED, 1)
 insert into tblComputer (memoryid, cpuid, graphicscardid, hddsizeid, weightunitid, weight, powersupplyid)
 select m.id, c.id, g.id, h.id, wu.id, replace(replace(t.col5,'kg',''),'lb',''), p.id
 from [table] t
@@ -74,4 +87,27 @@ left outer join tblWeightUnit wu on t.col5 like '%'+wu.description+'%'
 left outer join tblPowerSupply p on t.col6 = p.description
 select * from tblComputer;
 
+if (EXISTS(select * from sys.tables where name='tblComputerUSB'))
+BEGIN
+	drop table tblComputerUSB;
+END
+create table tblComputerUSB(id int identity(1,1), computerId int, usbId int, quantity int);
+
+DBCC CHECKIDENT ('tblComputerUSB', RESEED, 1)
+insert into tblComputerUSB(computerId, usbId, quanity) values(1,1,2);
+insert into tblComputerUSB(computerId, usbId, quanity) values(1,2,4);
+insert into tblComputerUSB(computerId, usbId, quanity) values(2,1,3);
+insert into tblComputerUSB(computerId, usbId, quanity) values(2,2,4);
+/*
+2 x USB 3.0, 4 x USB 2.0
+3 x USB 3.0, 4 x USB 2.0
+4 x USB 3.0, 4 x USB 2.0
+5 x USB 2.0, 4 x USB 3.0
+2 x USB 3.0, 2 x USB 2.0, 1 x USB C
+2 x USB C, 4 x USB 3.0
+8 x USB 3.0
+4 x USB 2.0
+10 x USB 3.0, 10 x USB 2.0, 10 x USB C
+19 x USB 3.0, 4 x USB 2.0
+*/
 select * from [table]

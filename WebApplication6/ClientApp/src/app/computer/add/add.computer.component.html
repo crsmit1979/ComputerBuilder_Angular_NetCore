@@ -1,2 +1,12 @@
-<h1>Add New Computer</h1>
-<computer-edit-form [computer]="computer" (onSave)="onAddRecord($event)"></computer-edit-form>
+<div class="card">
+  <h5 class="card-header">Computer - Create</h5>
+  <div class="card-body">
+    <div *ngIf="gotErrors()" class="error">
+      <span class="title">Errors:</span>
+      <ul class="error">
+        <li *ngFor="let error of errors">{{error}}</li>
+      </ul>
+    </div>
+    <computer-edit-form [computer]="computer" (onSave)="onAddRecord($event)"></computer-edit-form>
+  </div>
+</div>

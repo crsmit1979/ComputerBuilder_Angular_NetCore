@@ -1,3 +1,13 @@
-<h1>Add New Computer</h1>
-<span *ngIf="loading">Loading....</span>
-<computer-edit-form [computer]="computer" (onSave)="onUpdateRecord($event)"></computer-edit-form>
+<div class="card">
+  <h5 class="card-header">Computer - Edit</h5>
+  <div class="card-body">
+    <loader *ngIf="loading"></loader>
+    <div *ngIf="gotErrors()" class="error">
+      <span class="title">Errors:</span>
+      <ul class="error">
+        <li *ngFor="let error of errors">{{error}}</li>
+      </ul>
+    </div>
+    <computer-edit-form [computer]="computer" (onSave)="onUpdateRecord($event)"></computer-edit-form>
+  </div>
+</div>

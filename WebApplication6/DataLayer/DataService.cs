@@ -16,7 +16,9 @@ namespace WebApplication6.DataLayer
         IEnumerable<GraphicsCard> GetAllGraphicsCard();
         IEnumerable<WeightUnit> GetAllWeightUnit();
         IEnumerable<HDDSize> GetAllHDDSize();
-        ComputerSpec GetComputerSpec(int id);
+        IEnumerable<USB> GetAllUSB();
+
+        Computer GetComputerSpec(int id);
         Computer AddComputer(Computer computer);
         Computer UpdateComputer(int id, Computer computer);
         bool DeleteComputer(int id);
@@ -24,56 +26,57 @@ namespace WebApplication6.DataLayer
 
     public class DataService : IDataService
     {
-        private readonly WebApplication6Context _context;
-        public DataService(WebApplication6Context context)
+        private readonly DatabaseContext _context;
+        public DataService(DatabaseContext context)
         {
             this._context = context;
         }
         public IEnumerable<Cpu> GetAllCPU()
         {
-            return this._context.Cpu.Select(e=>e).ToList();
+            return this._context.Cpu
+                .ToList()
+                .OrderBy(e => e.Description);
         }
         public IEnumerable<WeightUnit> GetAllWeightUnit()
         {
-            return this._context.WeightUnit.Select(e => e).ToList();
+            return this._context.WeightUnit
+                .ToList()
+                .OrderBy(e => e.Description);
         }
         public IEnumerable<HDDSize> GetAllHDDSize()
         {
-            return this._context.HDDSize.Select(e => e).ToList();
+            return this._context.HDDSize
+                .ToList()
+                .OrderBy(e => e.Description);
         }
         public IEnumerable<Memory> GetAllMemory()
         {
-            return this._context.Memory.Select(e => e).ToList();
+            return this._context.Memory
+                .ToList()
+                .OrderBy(e => e.Description);
         }
         public IEnumerable<PowerSupply> GetAllPowerSupply()
         {
-            return this._context.PowerSupply.Select(e => e).ToList();
+            return this._context.PowerSupply
+                .ToList()
+                .OrderBy(e => e.Description);
         }
         public IEnumerable<GraphicsCard> GetAllGraphicsCard()
         {
-            return this._context.GraphicsCard.Select(e => e).ToList();
+            return this._context.GraphicsCard
+                .ToList()
+                .OrderBy(e => e.Description);
         }
-        public ComputerSpec GetComputerSpec(int id)
+        public IEnumerable<USB> GetAllUSB()
+        {
+            return this._context.USB
+                .ToList()
+                .OrderBy(e => e.Description);
+        }
+        public Computer GetComputerSpec(int id)
         {
             return this._context.Computer
                 .Where(w => w.Id == id)
-                .Select(e => new ComputerSpec()
-                {
-                    Id = e.Id,
-                    CPU = e.Cpu.Description,
-                    CPUId = e.Cpu.Id,
-                    Memory = e.Memory.Description,
-                    MemoryId = e.MemoryId,
-                    HDDSize = e.HddSize.Description,
-                    HddSizeId = e.HDDSizeId,
-                    GraphicsCard = e.GraphicsCard.Description,
-                    GraphicsCardId = e.GraphicsCardId,
-                    PowerSupplyId = e.PowerSupplyId,
-                    PowerSupply = e.PowerSupply.Description,
-                    Weight = e.Weight,
-                    WeightUnitId = e.WeightUnitId,
-                    WeightUnit = e.WeightUnit.Description
-                })
                 .FirstOrDefault();
         }
         public bool DeleteComputer(int id) {
@@ -147,6 +150,7 @@ namespace WebApplication6.DataLayer
             {
                 throw new Exception("Record not found");
             }
+            this._context.SaveChanges();
             //this._context.Computer.Update(record);
             return record;
 

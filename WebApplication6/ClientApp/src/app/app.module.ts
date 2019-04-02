@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ComputerEditComponent } from './components/computer_edit/computer.edit.component';
-import { ComputerListComponent } from './components/computer_list/computer.list.component';
+import { ListComputerComponent } from './computer/list/list.computer.component';
 import { AddComputerComponent } from './computer/add/add.computer.component';
 import { EditComputerComponent } from './computer/edit/edit.computer.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -19,7 +19,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     NavMenuComponent,
     HomeComponent,
     ComputerEditComponent,
-    ComputerListComponent,
+    ListComputerComponent,
     AddComputerComponent,
     EditComputerComponent,
     LoaderComponent
@@ -30,6 +30,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'list', component: HomeComponent, pathMatch: 'full' },
       { path: 'add', component: AddComputerComponent, pathMatch: 'full' },
       { path: 'edit/:id', component: EditComputerComponent, pathMatch: 'full' }
     ])

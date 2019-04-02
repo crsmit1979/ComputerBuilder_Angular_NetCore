@@ -30,6 +30,30 @@ namespace WebApplication6.Model
         public int Id { get; set; }
         public string Description { get; set; }
     }
+    [Table("tblComputerUsb")]
+    public class ComputerUSB
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [ForeignKey("Computer")]
+        public int ComputerId { get; set; }
+        public virtual Computer Computer { get; set; }
+
+        [ForeignKey("USB")]
+        public int UsbID { get; set; }
+        public virtual USB USB { get; set;}
+
+        public string Quanity { get; set; }
+    }
+    [Table("tblUSB")]
+    public class USB
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Description { get; set; }
+    }
+
     [Table("tblPowerSupply")]
     public class PowerSupply
     {
@@ -37,6 +61,7 @@ namespace WebApplication6.Model
         public int Id { get; set; }
         public string Description { get; set; }
     }
+
     [Table("tblGraphicsCard")]
     public class GraphicsCard
     {

@@ -8,6 +8,7 @@
   left:45%;
   top:45%;
   padding:20px;
+  z-index:9000;
 }
 img {
   height: 100px;

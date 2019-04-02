@@ -32,8 +32,8 @@ namespace WebApplication6
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddDbContext<WebApplication6Context>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebApplication6Context")));
+            services.AddDbContext<DatabaseContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DatabaseContext")));
             services.AddScoped<IDataService, DataService>();
         }
 

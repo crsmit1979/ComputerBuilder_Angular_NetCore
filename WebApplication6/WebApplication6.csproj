@@ -22,21 +22,25 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\components\computer_list\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\components\computer_list\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\components\computer_list\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\app\components\computer_list\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\components\computer_edit\computer.edit.component.ts" />
-    <None Remove="ClientApp\src\app\components\computer_list\computer.list.component.ts" />
     <None Remove="ClientApp\src\app\components\loader\loader.component.ts" />
+    <None Remove="ClientApp\src\app\computer\add\add.computer.component.spec.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\computer_edit\computer.edit.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\components\computer_list\computer.list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\loader\loader.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\computer\add\add.computer.component.spec.ts" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,8 @@ import { Powersupply } from '../../models/powersupply';
 import { Weightunit } from '../../models/weightunit';
 import { Memory } from '../../models/memory';
 import { Hddsize } from '../../models/hddsize';
+import { Usb } from '../../models/usb';
+import { ComputerUsb } from '../../models/computerusb';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -16,6 +18,7 @@ import { DataService } from '../../services/data.service';
 export class ComputerEditComponent {
   @Input() computer: Computer;
   @Output() onSave = new EventEmitter<Computer>();
+  usbItems: ComputerUsb[] = [{ id: 1, usbId: 1, computerId:1, quantity:2 }];
 
   cpus: Cpu[] = [];
   memories: Memory[] = [];
@@ -23,26 +26,74 @@ export class ComputerEditComponent {
   hddsizes: Hddsize[] = [];
   weightunits: Weightunit[] = [];
   powersupplies: Powersupply[] = [];
+  usbs: Usb[] = [];
 
   constructor(private dataService: DataService) {
-    dataService.getCPUs().subscribe((results) => {
+    this.loadCPUS();
+    this.loadGraphicsCards();
+    this.loadHDDSizes();
+    this.loadMemories();
+    this.loadPowerSupplies();
+    this.loadUSB();
+    this.loadWeightUnits();
+  }
+
+
+  loadUSB() {
+    this.dataService.getUSB().subscribe((results) => {
+      console.log(results);
+      this.usbs = results;
+    });
+  }
+
+  loadCPUS() {
+    this.dataService.getCPUs().subscribe((results) => {
       this.cpus = results;
     });
-    dataService.getWeightUnits().subscribe((results) => {
+  }
+
+  loadWeightUnits() {
+    this.dataService.getWeightUnits().subscribe((results) => {
       this.weightunits = results;
     });
-    dataService.getMemories().subscribe((results) => {
+  }
+
+  loadMemories() {
+    this.dataService.getMemories().subscribe((results) => {
       this.memories = results;
     });
-    dataService.getPowerSupply().subscribe((results) => {
+  }
+
+  loadPowerSupplies() {
+    this.dataService.getPowerSupply().subscribe((results) => {
       this.powersupplies = results;
     });
-    dataService.getGraphicCards().subscribe((results) => {
-      this.graphicscards = results;
-    });
-    dataService.getHDDSizes().subscribe((results) => {
+  }
+
+  loadHDDSizes() {
+    this.dataService.getHDDSizes().subscribe((results) => {
       this.hddsizes = results;
     });
+  }
+
+  loadGraphicsCards() {
+    this.dataService.getGraphicCards().subscribe((results) => {
+      this.graphicscards = results;
+    });
+  }
+
+  addUSBItem() {
+    var newComputerUSB = new ComputerUsb();
+    newComputerUSB.id = 3;
+
+    newComputerUSB.quantity = 1;
+    newComputerUSB.computerId = this.computer.id;
+    newComputerUSB.usbId = 1;
+    this.usbItems.push(newComputerUSB)
+  }
+
+  removeUSBItem(itm) {
+    this.usbItems = this.usbItems.filter(e => e.id != itm.id);
   }
 
   doSave() {
