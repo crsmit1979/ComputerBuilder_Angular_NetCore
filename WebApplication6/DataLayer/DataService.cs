@@ -8,7 +8,7 @@ namespace ComputerStore.DataLayer
 {
     public interface IDataService
     {
-        IEnumerable<ComputerSpec> GetAllComputerSpecs();
+        IEnumerable<ComputerSpec> GetAllComputerSpecs(string query=null);
         IEnumerable<Cpu> GetAllCPU();
         IEnumerable<Memory> GetAllMemory();
         IEnumerable<PowerSupply> GetAllPowerSupply();
@@ -100,9 +100,18 @@ namespace ComputerStore.DataLayer
             }
         }
 
-        public IEnumerable<ComputerSpec> GetAllComputerSpecs()
+        public IEnumerable<ComputerSpec> GetAllComputerSpecs(string query=null)
         {
             return this._context.Computer
+                .Where(e=>string.IsNullOrEmpty(query) || (
+                    (e.Memory.Description.IndexOf(query) > 0)   || //TODO: Need to check for null values
+                    (e.Cpu.Description.IndexOf(query) > 0)    ||
+                    (e.GraphicsCard.Description.IndexOf(query) > 0) ||
+                    (e.PowerSupply.Description.IndexOf(query) > 0) ||
+                    (e.WeightUnit.Description.IndexOf(query) > 0) ||
+                    (e.HddSize.Description.IndexOf(query) > 0)
+
+                ))
                 .Select(e => new ComputerSpec()
                 {
                     Id = e.Id,

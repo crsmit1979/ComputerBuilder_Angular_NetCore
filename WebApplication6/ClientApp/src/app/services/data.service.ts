@@ -7,36 +7,36 @@ import { Cpu} from '../models/cpu'
   providedIn: 'root'
 })
 export class DataService {
-  private URL: string = "https://localhost:44335/api/data";
+  private URL: string = "https://localhost:44335/api/data"; //TODO: Need to move into config
   constructor(private http: HttpClient) { }
 
-  getComputerSpecs() {
-    return this.http.get<Computer[]>(`${this.URL}/all_computer`);
+  getComputerSpecs(search) {
+    return this.http.get<Computer[]>(`${this.URL}/computer?search=${search}`);
   }
   getCPUs() {
-    return this.http.get<Cpu[]>(`${this.URL}/all_cpu`);
+    return this.http.get<Cpu[]>(`${this.URL}/cpu`);
   }
   getUSB() {
-    return this.http.get<Cpu[]>(`${this.URL}/all_usb`);
+    return this.http.get<Cpu[]>(`${this.URL}/usb`);
   }
   getMemories() {
-    return this.http.get<Cpu[]>(`${this.URL}/all_memory`);
+    return this.http.get<Cpu[]>(`${this.URL}/memory`);
   }
 
   getGraphicCards() {
-    return this.http.get<Cpu[]>(`${this.URL}/all_graphicscard`);
+    return this.http.get<Cpu[]>(`${this.URL}/graphicscard`);
   }
 
   getPowerSupply() {
-    return this.http.get<Cpu[]>(`${this.URL}/all_powersupply`);
+    return this.http.get<Cpu[]>(`${this.URL}/powersupply`);
   }
 
   getWeightUnits() {
-    return this.http.get<Cpu[]>(`${this.URL}/all_weightunit`);
+    return this.http.get<Cpu[]>(`${this.URL}/weightunit`);
   }
 
   getHDDSizes() {
-    return this.http.get<Cpu[]>(`${this.URL}/all_hddsize`);
+    return this.http.get<Cpu[]>(`${this.URL}/hddsize`);
   }
 
   getComputerById(id: number) {
@@ -46,6 +46,7 @@ export class DataService {
   insertComputer(record: Computer) {
     return this.http.post<Computer>(`${this.URL}/computers`, record);
   }
+
   updateComputer(record: Computer) {
     return this.http.put<Computer>(`${this.URL}/computers/${record.id}`, record);
   }

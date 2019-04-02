@@ -19,10 +19,10 @@ namespace WebApplication6.Controllers
 
         // GET: api/Cpus
         [HttpGet]
-        [Route("all_computer")]
-        public IEnumerable<ComputerSpec> GetAllComputerSpecs()
+        [Route("computer")]
+        public IEnumerable<ComputerSpec> GetAllComputerSpecs([FromQuery] string search="")
         {
-            return this._dataService.GetAllComputerSpecs();
+            return this._dataService.GetAllComputerSpecs(search);
         }
         [HttpGet]
         [Route("computers/{id}")]
@@ -89,45 +89,45 @@ namespace WebApplication6.Controllers
         }
 
         [HttpGet]
-        [Route("all_cpu")]
+        [Route("cpu")]
         public IEnumerable<Cpu> GetAllCPU()
         {
             return this._dataService.GetAllCPU();
         }
 
         [HttpGet]
-        [Route("all_memory")]
+        [Route("memory")]
         public IEnumerable<Memory> GetAllMemory()
         {
             return this._dataService.GetAllMemory();
         }
 
         [HttpGet]
-        [Route("all_powersupply")]
+        [Route("powersupply")]
         public IEnumerable<PowerSupply> GetAllPowerSupply()
         {
             return this._dataService.GetAllPowerSupply();
         }
         [HttpGet]
-        [Route("all_graphicscard")]
+        [Route("graphicscard")]
         public IEnumerable<GraphicsCard> GetAllGraphicsCard()
         {
             return this._dataService.GetAllGraphicsCard();
         }
         [HttpGet]
-        [Route("all_usb")]
+        [Route("usb")]
         public IEnumerable<USB> GetAllUSB()
         {
             return this._dataService.GetAllUSB();
         }
         [HttpGet]
-        [Route("all_weightunit")]
+        [Route("weightunit")]
         public IEnumerable<WeightUnit> GetAllWeightUnit()
         {
             return this._dataService.GetAllWeightUnit();
         }
         [HttpGet]
-        [Route("all_hddsize")]
+        [Route("hddsize")]
         public IEnumerable<HDDSize> GetAllHDDSize()
         {
             return this._dataService.GetAllHDDSize();

@@ -1,9 +1,14 @@
 <loader *ngIf="loading"></loader>
+<label>Search by Text: </label>
+<input type="text" [(ngModel)]="search"/>
+<input type="button" (click)="searchData()" value="Search"/>
+<hr/>
 <table class="table table-sm table-striped table-bordered first">
   <thead>
     <tr>
       <th>Id</th>
       <th>CPU</th>
+
       <th>Power Supply</th>
       <th>Memory</th>
       <th>HDD Size</th>

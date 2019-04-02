@@ -11,14 +11,22 @@ export class ListComputerComponent {
   computers: Computer[];
   selectedRecord: Computer;
   loading: boolean = false;
+  search: string="";
 
   constructor(private dataService: DataService) {
     this.loadComputers();
   }
+  searchData() {
+    this.loading = true;
+    this.dataService.getComputerSpecs(this.search).subscribe((response) => {
+      this.computers = response;
+      this.loading = false;
+    });
 
+  }
   loadComputers() {
     this.loading = true;
-    this.dataService.getComputerSpecs().subscribe((response) => {
+    this.dataService.getComputerSpecs("").subscribe((response) => {
       this.computers = response;
       this.loading = false;
     },

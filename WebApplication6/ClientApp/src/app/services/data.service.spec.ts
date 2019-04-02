@@ -8,7 +8,7 @@ import { MockBackend } from '@angular/http/testing';
 describe('DataService', () => {
   let httpTestingController: HttpTestingController;
   let service: DataService;
-  const URL = 'https://localhost:44335/api/data';
+  const URL = 'https://localhost:44335/api/data'; //TODO need to read from config
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,7 +42,7 @@ describe('DataService', () => {
       expect(response[1].description).toEqual("Cpu 2");
     });
 
-    const req = httpTestingController.expectOne(`${URL}/all_cpu`);
+    const req = httpTestingController.expectOne(`${URL}/cpu`);
     expect(req.request.method).toEqual('GET');
 
     req.flush(mockData);
@@ -62,7 +62,7 @@ describe('DataService', () => {
       expect(response[1].description).toEqual("Memory 2");
     });
 
-    const req = httpTestingController.expectOne(`${URL}/all_memory`);
+    const req = httpTestingController.expectOne(`${URL}/memory`);
     expect(req.request.method).toEqual('GET');
 
     req.flush(mockData);
@@ -82,7 +82,7 @@ describe('DataService', () => {
       expect(response[1].description).toEqual("PSU 2");
     });
 
-    const req = httpTestingController.expectOne(`${URL}/all_powersupply`);
+    const req = httpTestingController.expectOne(`${URL}/powersupply`);
     expect(req.request.method).toEqual('GET');
 
     req.flush(mockData);
@@ -102,7 +102,7 @@ describe('DataService', () => {
       expect(response[1].description).toEqual("HDD 2");
     });
 
-    const req = httpTestingController.expectOne(`${URL}/all_hddsize`);
+    const req = httpTestingController.expectOne(`${URL}/hddsize`);
     expect(req.request.method).toEqual('GET');
 
     req.flush(mockData);
@@ -124,7 +124,7 @@ describe('DataService', () => {
       expect(response[1].description).toEqual("kg");
     });
 
-    const req = httpTestingController.expectOne(`${URL}/all_weightunit`);
+    const req = httpTestingController.expectOne(`${URL}/weightunit`);
     expect(req.request.method).toEqual('GET');
 
     req.flush(mockData);
