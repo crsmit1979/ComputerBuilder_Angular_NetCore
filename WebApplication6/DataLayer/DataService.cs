@@ -1,11 +1,10 @@
-﻿using System;
+﻿using ComputerStore.Model;
+using ComputerStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using WebApplication6.Model;
-using WebApplication6.Models;
 
-namespace WebApplication6.DataLayer
+namespace ComputerStore.DataLayer
 {
     public interface IDataService
     {
@@ -31,36 +30,42 @@ namespace WebApplication6.DataLayer
         {
             this._context = context;
         }
+
         public IEnumerable<Cpu> GetAllCPU()
         {
             return this._context.Cpu
                 .ToList()
                 .OrderBy(e => e.Description);
         }
+
         public IEnumerable<WeightUnit> GetAllWeightUnit()
         {
             return this._context.WeightUnit
                 .ToList()
                 .OrderBy(e => e.Description);
         }
+
         public IEnumerable<HDDSize> GetAllHDDSize()
         {
             return this._context.HDDSize
                 .ToList()
                 .OrderBy(e => e.Description);
         }
+
         public IEnumerable<Memory> GetAllMemory()
         {
             return this._context.Memory
                 .ToList()
                 .OrderBy(e => e.Description);
         }
+
         public IEnumerable<PowerSupply> GetAllPowerSupply()
         {
             return this._context.PowerSupply
                 .ToList()
                 .OrderBy(e => e.Description);
         }
+
         public IEnumerable<GraphicsCard> GetAllGraphicsCard()
         {
             return this._context.GraphicsCard
@@ -73,12 +78,14 @@ namespace WebApplication6.DataLayer
                 .ToList()
                 .OrderBy(e => e.Description);
         }
+
         public Computer GetComputerSpec(int id)
         {
             return this._context.Computer
                 .Where(w => w.Id == id)
                 .FirstOrDefault();
         }
+
         public bool DeleteComputer(int id) {
             try
             {
@@ -87,7 +94,7 @@ namespace WebApplication6.DataLayer
                 this._context.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -118,21 +125,28 @@ namespace WebApplication6.DataLayer
 
         public Computer AddComputer(Computer computer)
         {
-            Computer comp = new Computer()
+            try
             {
-                CpuId = computer.CpuId,
-                HDDSizeId = computer.HDDSizeId,
-                GraphicsCardId = computer.GraphicsCardId,
-                MemoryId = computer.MemoryId,
-                PowerSupplyId = computer.PowerSupplyId,
-                Weight = computer.Weight,
-                WeightUnitId = computer.WeightUnitId
-            };
-            this._context.Computer.Add(comp);
-            this._context.SaveChanges();
-            return comp;
-
+                Computer comp = new Computer()
+                {
+                    CpuId = computer.CpuId,
+                    HDDSizeId = computer.HDDSizeId,
+                    GraphicsCardId = computer.GraphicsCardId,
+                    MemoryId = computer.MemoryId,
+                    PowerSupplyId = computer.PowerSupplyId,
+                    Weight = computer.Weight,
+                    WeightUnitId = computer.WeightUnitId
+                };
+                this._context.Computer.Add(comp);
+                this._context.SaveChanges();
+                return comp;
+            }
+            catch
+            {
+                throw new Exception("Problem inserting computer record");
+            }
         }
+
         public Computer UpdateComputer(int id, Computer computer)
         {
             Computer record = this._context.Computer.Where(e => e.Id == id).FirstOrDefault();

@@ -18,10 +18,12 @@ export class ListComputerComponent {
 
   loadComputers() {
     this.loading = true;
-    this.dataService.getComputerSpecs().subscribe((dt) => {
-      this.computers = dt;
+    this.dataService.getComputerSpecs().subscribe((response) => {
+      this.computers = response;
       this.loading = false;
-    });
+    },
+      (error) => this.logError(error)
+    );
 
   }
 
@@ -33,20 +35,22 @@ export class ListComputerComponent {
     if (confirm("Are you sure you want to delete the record")) {
       this.dataService.deleteComputer(record.id).subscribe((deleted) => {
         if (deleted) {
+          window.scroll(0, 0);
           this.loadComputers();
         }
         else {
-          this.showError("Problem deleting record");
+          this.logError("Problem deleting record");
         }
       });
     }
   }
 
-  showError(msg: string) {
-    alert(msg);
+  logError(msg: string) {
+    ///call a loggin service to show the error to the user
   }
 
   selectRecord(record: Computer) {
     this.selectedRecord = record;
+
   }
 }

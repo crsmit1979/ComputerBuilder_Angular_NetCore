@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebApplication6.Model
+namespace ComputerStore.Model
 {
     
     [Table("tblCPU")]
@@ -16,6 +11,7 @@ namespace WebApplication6.Model
         public int Id { get; set; }
         public string Description { get; set; }
     }
+
     [Table("tblWeightUnit")]
     public class WeightUnit
     {
@@ -110,22 +106,22 @@ namespace WebApplication6.Model
         public int PowerSupplyId { get; set; }
         public PowerSupply PowerSupply { get; set; }
     }
-
+    
     public class ComputerSpec
     {
         public int Id { get; set; }
-        public int MemoryId { get; set; }
+        public int? MemoryId { get; set; }
         public string Memory { get; set; }
-        public int CPUId { get; set; }
+        public int? CPUId { get; set; }
         public string CPU { get; set; }
-        public int HddSizeId { get; set; }
+        public int? HddSizeId { get; set; }
         public string HDDSize { get; set; }
         public decimal Weight { get; set; }
-        public int WeightUnitId { get; set; }
+        public int? WeightUnitId { get; set; }
         public string WeightUnit { get; set; }
-        public int PowerSupplyId { get; set; }
+        public int? PowerSupplyId { get; set; }
         public string PowerSupply { get; set; }
-        public int GraphicsCardId { get; set; }
+        public int? GraphicsCardId { get; set; }
         public string GraphicsCard { get; set; }
     }
 }

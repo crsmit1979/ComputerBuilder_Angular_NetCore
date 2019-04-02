@@ -7,8 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.EntityFrameworkCore;
-using WebApplication6.Models;
-using WebApplication6.DataLayer;
+using ComputerStore.DataLayer;
+using ComputerStore.Models;
 
 namespace WebApplication6
 {

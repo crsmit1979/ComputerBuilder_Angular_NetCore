@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using ComputerStore.DataLayer;
+using ComputerStore.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WebApplication6.DataLayer;
-using WebApplication6.Model;
-using WebApplication6.Models;
 
 namespace WebApplication6.Controllers
 {
@@ -39,15 +34,23 @@ namespace WebApplication6.Controllers
         [Route("computers")]
         public Computer AddComputer([FromBody] ComputerSpec computer)
         {
+            if ((!computer.HddSizeId.HasValue) || 
+                (!computer.MemoryId.HasValue) || 
+                (!computer.PowerSupplyId.HasValue) ||
+                (!computer.WeightUnitId.HasValue) || 
+                (!computer.GraphicsCardId.HasValue) ||
+                (!computer.CPUId.HasValue)) {
+                throw new Exception("Computer fields not correct");
+            }
             Computer newComputer = new Computer()
             {
-                CpuId = computer.CPUId,
-                HDDSizeId = computer.HddSizeId,
-                GraphicsCardId = computer.GraphicsCardId,
-                MemoryId = computer.MemoryId,
-                PowerSupplyId = computer.PowerSupplyId,
+                CpuId = computer.CPUId.Value,
+                HDDSizeId = computer.HddSizeId.Value,
+                GraphicsCardId = computer.GraphicsCardId.Value,
+                MemoryId = computer.MemoryId.Value,
+                PowerSupplyId = computer.PowerSupplyId.Value,
                 Weight = computer.Weight,
-                WeightUnitId = computer.WeightUnitId
+                WeightUnitId = computer.WeightUnitId.Value
             };
 
             return this._dataService.AddComputer(newComputer);
@@ -56,15 +59,24 @@ namespace WebApplication6.Controllers
         [Route("computers/{id}")]
         public Computer UpdateComputer(int id, [FromBody] ComputerSpec computer)
         {
+            if ((!computer.HddSizeId.HasValue) ||
+                (!computer.MemoryId.HasValue) ||
+                (!computer.PowerSupplyId.HasValue) ||
+                (!computer.WeightUnitId.HasValue) ||
+                (!computer.GraphicsCardId.HasValue) ||
+                (!computer.CPUId.HasValue))
+            {
+                throw new Exception("Computer fields not correct");
+            }
             Computer newComputer = new Computer()
             {
-                CpuId = computer.CPUId,
-                HDDSizeId = computer.HddSizeId,
-                GraphicsCardId = computer.GraphicsCardId,
-                MemoryId = computer.MemoryId,
-                PowerSupplyId = computer.PowerSupplyId,
+                CpuId = computer.CPUId.Value,
+                HDDSizeId = computer.HddSizeId.Value,
+                GraphicsCardId = computer.GraphicsCardId.Value,
+                MemoryId = computer.MemoryId.Value,
+                PowerSupplyId = computer.PowerSupplyId.Value,
                 Weight = computer.Weight,
-                WeightUnitId = computer.WeightUnitId
+                WeightUnitId = computer.WeightUnitId.Value
             };
 
             return this._dataService.UpdateComputer(id, newComputer);
@@ -120,80 +132,5 @@ namespace WebApplication6.Controllers
         {
             return this._dataService.GetAllHDDSize();
         }
-        /*
-                // GET: api/Cpus/5
-                [HttpGet("{id}")]
-                public async Task<ActionResult<Cpu>> GetCpu(int id)
-                {
-                    var cpu = await _context.Cpu.FindAsync(id);
-
-                    if (cpu == null)
-                    {
-                        return NotFound();
-                    }
-
-                    return cpu;
-                }
-
-                // PUT: api/Cpus/5
-                [HttpPut("{id}")]
-                public async Task<IActionResult> PutCpu(int id, Cpu cpu)
-                {
-                    if (id != cpu.Id)
-                    {
-                        return BadRequest();
-                    }
-
-                    _context.Entry(cpu).State = EntityState.Modified;
-
-                    try
-                    {
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!CpuExists(id))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-
-                    return NoContent();
-                }
-
-                // POST: api/Cpus
-                [HttpPost]
-                public async Task<ActionResult<Cpu>> PostCpu(Cpu cpu)
-                {
-                    _context.Cpu.Add(cpu);
-                    await _context.SaveChangesAsync();
-
-                    return CreatedAtAction("GetCpu", new { id = cpu.Id }, cpu);
-                }
-
-                // DELETE: api/Cpus/5
-                [HttpDelete("{id}")]
-                public async Task<ActionResult<Cpu>> DeleteCpu(int id)
-                {
-                    var cpu = await _context.Cpu.FindAsync(id);
-                    if (cpu == null)
-                    {
-                        return NotFound();
-                    }
-
-                    _context.Cpu.Remove(cpu);
-                    await _context.SaveChangesAsync();
-
-                    return cpu;
-                }
-
-                private bool CpuExists(int id)
-                {
-                    return _context.Cpu.Any(e => e.Id == id);
-                }*/
     }
 }

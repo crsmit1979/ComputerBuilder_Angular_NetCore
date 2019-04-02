@@ -6,7 +6,7 @@ import { ValidatorService } from '../../services/validator.service';
 
 @Component({
   selector: 'add-computer',
-  templateUrl: './add.computer.component.html',
+  templateUrl: './add.computer.component.html'
 })
 
 export class AddComputerComponent {
@@ -36,6 +36,7 @@ export class AddComputerComponent {
   insertRecord() {
     this.dataService.insertComputer(this.computer).subscribe((response) => {
       this.router.navigateByUrl("/");
+      window.scroll(0, 0);
     });
   }
 }

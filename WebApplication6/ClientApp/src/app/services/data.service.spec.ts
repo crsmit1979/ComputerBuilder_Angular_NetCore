@@ -35,8 +35,6 @@ describe('DataService', () => {
     ];
 
     service.getCPUs().subscribe((response) => {
-      console.debug(response);
-      console.log(response);
       expect(response.length).toBe(2);
       expect(response[0].id).toEqual(1);
       expect(response[1].id).toEqual(2);
@@ -57,8 +55,6 @@ describe('DataService', () => {
     ];
 
     service.getMemories().subscribe((response) => {
-      console.debug(response);
-      console.log(response);
       expect(response.length).toBe(2);
       expect(response[0].id).toEqual(1);
       expect(response[1].id).toEqual(2);
@@ -79,8 +75,6 @@ describe('DataService', () => {
     ];
 
     service.getPowerSupply().subscribe((response) => {
-      console.debug(response);
-      console.log(response);
       expect(response.length).toBe(2);
       expect(response[0].id).toEqual(1);
       expect(response[1].id).toEqual(2);
@@ -101,8 +95,6 @@ describe('DataService', () => {
     ];
 
     service.getHDDSizes().subscribe((response) => {
-      console.debug(response);
-      console.log(response);
       expect(response.length).toBe(2);
       expect(response[0].id).toEqual(1);
       expect(response[1].id).toEqual(2);
@@ -125,8 +117,6 @@ describe('DataService', () => {
 
     //WHEN
     service.getWeightUnits().subscribe((response) => {
-      console.debug(response);
-      console.log(response);
       expect(response.length).toBe(2);
       expect(response[0].id).toEqual(1);
       expect(response[1].id).toEqual(2);

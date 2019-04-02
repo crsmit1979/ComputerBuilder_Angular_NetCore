@@ -8,6 +8,6 @@
         <li *ngFor="let error of errors">{{error}}</li>
       </ul>
     </div>
-    <computer-edit-form [computer]="computer" (onSave)="onUpdateRecord($event)"></computer-edit-form>
+    <computer-edit-form [computer]="computer" (onSave)="onUpdateRecord()"></computer-edit-form>
   </div>
 </div>

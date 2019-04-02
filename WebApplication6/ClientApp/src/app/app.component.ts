@@ -15,4 +15,5 @@ export class AppComponent {
   onSaveRecord() {
     alert(1);
   }
+ 
 }

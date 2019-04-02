@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using WebApplication6.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using ComputerStore.Models;
+using ComputerStore.Model;
 
-namespace WebApplication6.Models
+namespace ComputerStore.Models
 {
     public class DatabaseContext : DbContext
     {
@@ -17,14 +14,14 @@ namespace WebApplication6.Models
         {
 
         }
-        public virtual DbSet<WebApplication6.Model.Cpu> Cpu { get; set; }
-        public virtual DbSet<WebApplication6.Model.Computer> Computer { get; set; }
-        public virtual DbSet<WebApplication6.Model.Memory> Memory { get; set; }
-        public virtual DbSet<WebApplication6.Model.HDDSize> HDDSize { get; set; }
-        public virtual DbSet<WebApplication6.Model.PowerSupply> PowerSupply { get; set; }
-        public virtual DbSet<WebApplication6.Model.GraphicsCard> GraphicsCard { get; set; }
-        public virtual DbSet<WebApplication6.Model.USB> USB { get; set; }
-        public virtual DbSet<WebApplication6.Model.WeightUnit> WeightUnit { get; set; }
+        public virtual DbSet<Cpu> Cpu { get; set; }
+        public virtual DbSet<Computer> Computer { get; set; }
+        public virtual DbSet<Memory> Memory { get; set; }
+        public virtual DbSet<HDDSize> HDDSize { get; set; }
+        public virtual DbSet<PowerSupply> PowerSupply { get; set; }
+        public virtual DbSet<GraphicsCard> GraphicsCard { get; set; }
+        public virtual DbSet<USB> USB { get; set; }
+        public virtual DbSet<WeightUnit> WeightUnit { get; set; }
 
     }
 }

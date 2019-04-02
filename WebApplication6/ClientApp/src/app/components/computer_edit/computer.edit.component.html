@@ -1,5 +1,5 @@
 <form *ngIf="computer">
-  <div class="form-row">
+  <div class="form-row" style="display:none;">
     <div class="form-group col-sm-12">
       <label class="col-sm-3 col-form-label ">Id:</label>
       <input type="text" [(ngModel)]="computer.id" name="id" class="form-control-sm col-sm-3" />
@@ -59,8 +59,6 @@
     </div>
   </div>
   <div class="form-row">
-    <label class="col-sm-4 col-form-label" for="weightUnitId">USB Ports:</label>
-    <br/>
     <table class="table">
       <thead>
         <tr>
@@ -71,10 +69,10 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let usbItem of usbItems">
+        <tr *ngFor="let usbItem of usbItems; let i = index">
           <td>
             <select class="form-control-sm col-sm-12" name="usbid" placeholder="USB">
-              <option *ngFor="let item of usbs" value="{{item.id}}">{{item.description}}</option>
+              <option *ngFor="let item of usbs" [value]="item.id">{{item.description}}</option>
             </select>
           </td>
           <td>

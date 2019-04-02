@@ -54,6 +54,7 @@ export class EditComputerComponent {
   updateComputerRecord() {
     this.dataService.updateComputer(this.computer).subscribe((response) => {
       this.router.navigateByUrl("/");
+      window.scroll(0, 0);
     })
   }
 }
