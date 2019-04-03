@@ -5,9 +5,9 @@ BEGIN
 	drop table tblUSB;
 END
 create table tblUSB (id int identity(1,1), description nvarchar(255))
-insert into tblUSB(id, description) values ('USB 3.0');
-insert into tblUSB(id, description) values ('USB 2.0');
-insert into tblUSB(id, description) values ('USB C');
+insert into tblUSB( description) values ('USB 3.0');
+insert into tblUSB(description) values ('USB 2.0');
+insert into tblUSB(description) values ('USB C');
 
 
 
@@ -93,11 +93,10 @@ BEGIN
 END
 create table tblComputerUSB(id int identity(1,1), computerId int, usbId int, quantity int);
 
-DBCC CHECKIDENT ('tblComputerUSB', RESEED, 1)
-insert into tblComputerUSB(computerId, usbId, quanity) values(1,1,2);
-insert into tblComputerUSB(computerId, usbId, quanity) values(1,2,4);
-insert into tblComputerUSB(computerId, usbId, quanity) values(2,1,3);
-insert into tblComputerUSB(computerId, usbId, quanity) values(2,2,4);
+insert into tblComputerUSB(computerId, usbId, quantity) values(1,1,2);
+insert into tblComputerUSB(computerId, usbId, quantity) values(1,2,4);
+insert into tblComputerUSB(computerId, usbId, quantity) values(2,1,3);
+insert into tblComputerUSB(computerId, usbId, quantity) values(2,2,4);
 /*
 2 x USB 3.0, 4 x USB 2.0
 3 x USB 3.0, 4 x USB 2.0
@@ -111,3 +110,7 @@ insert into tblComputerUSB(computerId, usbId, quanity) values(2,2,4);
 19 x USB 3.0, 4 x USB 2.0
 */
 select * from [table]
+select * from tblUSB
+select * from tblComputer
+select * from tblComputerUSB
+
